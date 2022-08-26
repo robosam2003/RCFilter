@@ -7,8 +7,8 @@
 #define PI 3.14159265358979323846
 #endif // PI
 
-RCFilter::RCFilter(double cuttoff_freq) {
-    RC = 1 / (2 * PI * cuttoff_freq);
+RCFilter::RCFilter(double cutoff_freq) {
+    RC = 1 / (2 * PI * cutoff_freq);
     prev_value = 0;
     prev_update_time_us = 0;
 }
@@ -17,11 +17,17 @@ double RCFilter::update(double input, unsigned long current_time_us) {
     double T = (current_time_us - prev_update_time_us) * 1e-6;
     prev_update_time_us = current_time_us;
 
+    // the two coefficients in the difference equation.
     double coeff1 = T / (T + RC);
     double coeff2 = RC / (T + RC);
 
+    // difference equation - using euler's method for discretion.
     double out = input*coeff1 + prev_value*coeff2;
+
+    // update previous value
     prev_value = out;
+
+
     return out;
 }
 

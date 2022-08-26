@@ -7,13 +7,23 @@
 
 
 class RCFilter {
-public:
+private:
     double RC; //equal to R*C
     double prev_value;
     unsigned long prev_update_time_us;
-
+public:
+    /**
+     * @brief Construct a new RC Filter object
+     * @param cuttoff_freq (Hz)
+     */
     explicit RCFilter(double cuttoff_freq);
 
+    /**
+     * @brief Update the filter with new input
+     * @param input
+     * @param current_time_us
+     * @return The filtered output.
+     */
     double update(double input, unsigned long current_time_us);
 
     // copy constructors
