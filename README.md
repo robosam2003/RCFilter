@@ -3,7 +3,7 @@ This is a digital implementation of an analogue RC filter.
 
 ## Theory
 
-<img src="https://github.com/robosam2003/RCFilter/blob/main/RCFilterDiagram">
+<img src="https://github.com/robosam2003/RCFilter/blob/main/resources/RCFilterDiagram.jpg">
 
 
 We can infer that the differential equation for this system is:
@@ -33,7 +33,18 @@ The RC filter is constructed with:
 RCFilter acc_x(8); // Cutoff frequency of 8Hz 
 ```
 
-The filtered value is obtained by calling the `.update()` method:
+The filtered value is obtained by calling the `.update()` method: (need an accurate timestamp in microseconds (us) )
 ```cpp
-float out = acc_x.update(x);
+double x = sensor.read();
+unsigned long t = micros();
+float out = acc_x.update(x, t);
 ```
+
+
+The filter successfully filters out noise (accelerometer data):
+
+<img src = "https://github.com/robosam2003/RCFilter/blob/main/resources/filtersNoise.jpg">
+
+Be careful when choosing a cutoff frequency, if it's too low, the response lag's behind:
+
+<img src = "https://github.com/robosam2003/RCFilter/blob/main/resources/slowResponse.jpg">
