@@ -9,7 +9,7 @@ This is a digital implementation of an analogue RC filter.
 We can infer that the differential equation for this system is:
 
 $$
-V_{in} = RC\frac{dV}{dt} + V_{out}
+V_{in} = RC\frac{dV_{out}}{dt} + V_{out}
 $$
 
 Discretising using euler's method:
@@ -25,7 +25,7 @@ V_{out} = V_{in}[n]\frac{T}{T+RC} + V_{out}[n-1]\frac{RC}{T+RC}
 $$
 
 This is calculated every time the `.update()` method is called, and is very computationally inexpensive.
-w
+
 ## Operation
 
 The RC filter is constructed with:
@@ -41,7 +41,7 @@ float out = acc_x.update(x, t);
 ```
 
 
-The filter successfully filters out noise (accelerometer data):
+The filter successfully filters out noise (accelerometer data shown below, Raw (Red) and Filtered (Green) ):
 
 <img src = "https://github.com/robosam2003/RCFilter/blob/main/resources/filtersNoise.jpg">
 
