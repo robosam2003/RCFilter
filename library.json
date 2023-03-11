@@ -1,0 +1,18 @@
+{
+  "name": "RCFilter",
+  "version": "1.0.0",
+  "description": "This is a digital implementation of an analogue RC filter. ",
+  "keywords": [
+    "RCFilter",
+    "arduino",
+    "Low Pass"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TeamSunride/RCFilter.git"
+  },
+  "author": {
+    "name": "robosam2003"
+  }
+
+}
